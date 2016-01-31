@@ -83,3 +83,4 @@ There is not a dependency between sub-pyramids of the same level.
 [3] http://persci.mit.edu/pub_pdfs/pyramid83.pdf
 [4] http://collaboration.cmc.ec.gc.ca/science/rpn/biblio/ddj/Website/articles/CUJ/1997/9712/perry/perry.htm
 [5] http://www1.icsi.berkeley.edu/~stellayu/publication/doc/2009egmsISVC.pdf
+[6] http://www2.ensc.sfu.ca/grad/theses/masters/Dave_Houlding_MASc_94.pdf
