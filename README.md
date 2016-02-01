@@ -1,7 +1,40 @@
 # SVC
 A Symmetric Video Codec
 
-	+---------+ +---------+ +---------+
+	+---------+
+	|         |
+	| Level L |
+	|         |
+	+---------+
+	+---------------------+
+	|                     |
+	|                     |
+	|                     |
+	|      Level L-1      |
+	|                     |
+	|                     |
+	|                     |
+	+---------------------+
+
+Decode-frame procedure:
+
+1. Generate a prediction for "Level L-1" using "Level L" (for example, using bilinear interpolation or information -- represented in a compact form -- that will be avaiable when Level L-1 is decoded).
+2. Decode a prediction error for "Level L-1".
+3. Generate "Level L-1" as the addition of the prediction for "Level L-1" and the prediction error for "Level L-1".
+4. L <- L - 1
+5. Go to step 1.
+
+Encode-frame procedure:
+
+1. Generate "Level L" by using "Level L-1".
+2. Generate a prediction for "Level L-1" using "Level L" (for example, using bilinear interpolation).
+3. Generate a prediction error for "Level L-1" as the substraction of the prediction for "Level L-1" to "Level L-1".
+4. Encode the prediction error for "Level L-1".
+5. L <- L + 1.
+6. Go to step 2.
+
+
+      	+---------+ +---------+ +---------+
 	| Frame 0 | | Frame 1 | | Frame 2 |
 	+---------+ +---------+ +---------+
 
@@ -21,37 +54,6 @@ Encoder step:
 4. Generate a prediction error for "Frame 1" as the substraction of the prediction for "Frame 1" to "Frame 1".
 5. Encode the prediction error for "Frame 1".
 
-	+---------+ 
-	|         |
-	| Level L |
-	|         |
-	+---------+
-	+---------------------+
-	|                     |
-	|                     |
-	|                     |
-	|      Level L-1      |
-	|                     |
-	|                     |
-	|                     |
-	+---------------------+
-
-Decode-frame procedure:
-
-1. Generate a prediction for "Level L-1" using "Level L" (for example, using bilinear interpolation).
-2. Decode a prediction error for "Level L-1".
-3. Generate "Level L-1" as the addition of the prediction for "Level L-1" and the prediction error for "Level L-1".
-4. L <- L - 1
-5. Go to step 1.
-
-Encode-frame procedure:
-
-1. Generate "Level L" by using "Level L-1".
-2. Generate a prediction for "Level L-1" using "Level L" (for example, using bilinear interpolation).
-3. Generate a prediction error for "Level L-1" as the substraction of the prediction for "Level L-1" to "Level L-1".
-4. Encode the prediction error for "Level L-1".
-5. L <- L + 1.
-6. Go to step 2.
 
 	+-----+
 	|  A  |
