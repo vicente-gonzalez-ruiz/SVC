@@ -1,6 +1,23 @@
 # SVC
 A Symmetric Video Codec
 
+Analyze-step procedure:
+
+      	+---------+ +---------+ +---------+
+	| Frame 0 | | Frame 1 | | Frame 2 |
+	+---------+ +---------+ +---------+
+
+1. Generate F_0.Level_L-1 and F2.Level_L-1.
+
+
+Synthesize-step procedure:
+
+1. Generate Frame_0.Level_L and Frame_2.Level_L.
+2. Estimate the motion between the prvious cjhennels.
+3. 
+
+Conseguir ceros mediante interpolacion y luego usar codificacion aritmetica un un modelo probabilistico de orden 0. Ver si es posible usar el nivel L para estimar el movimiento usado en el L-1 (como imagen, no como residuo, que puede estar muy mermado). La idea es no transmitir los vectores de movimiento.
+
 	+---------+
 	|         |
 	| Level L |
@@ -27,7 +44,7 @@ Decode-frame procedure:
 Encode-frame procedure:
 
 1. Generate "Level L" by using "Level L-1".
-2. Generate a prediction for "Level L-1" using "Level L" (for example, using bilinear interpolation).
+2. Generate a prediction for "Level L-1" using "Level L" (using the same method than the used by the decoder).
 3. Generate a prediction error for "Level L-1" as the substraction of the prediction for "Level L-1" to "Level L-1".
 4. Encode the prediction error for "Level L-1".
 5. L <- L + 1.
@@ -37,6 +54,7 @@ Encode-frame procedure:
       	+---------+ +---------+ +---------+
 	| Frame 0 | | Frame 1 | | Frame 2 |
 	+---------+ +---------+ +---------+
+
 
 Decoder step:
 
