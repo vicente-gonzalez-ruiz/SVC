@@ -7,7 +7,9 @@ Analyze-step procedure:
 	| Frame 0 | | Frame 1 | | Frame 2 |
 	+---------+ +---------+ +---------+
 
-1. Generate F_0.Level_L-1 and F2.Level_L-1.
+1. Generate the L-levels pyramid for the 3 frames.
+2. Estimate the movement for the L-1 Level of Frame 1 using Frame 0 and 2 as references.
+3. 
 
 
 Synthesize-step procedure:
