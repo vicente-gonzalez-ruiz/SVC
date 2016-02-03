@@ -1,22 +1,30 @@
-# SVC
-A Symmetric Video Codec
+# SVC: A Symmetric Video Codec
 
-Analyze-step procedure:
+## Analyze-step procedure:
 
-      	+---------+ +---------+ +---------+
-	| Frame 0 | | Frame 1 | | Frame 2 |
-	+---------+ +---------+ +---------+
+    +----------+ +------------+ +------------+
+	| Frame 2i | | Frame 2i+1 | | Frame 2i+2 |
+	+----------+ +------------+ +------------+
 
-1. Generate the L-levels pyramid for the 3 frames.
-2. Estimate the movement for the Level L-2 of Frame 1 using the Level L-1 of Frames 0 and 2 as references.
-3. L <- L-1. Go to 2, until L>0.
-4. Generate the pyramid of differences for Frame 0.
-5. Iterate over the rest of frames of the GOF.
+0. l <- L.
+1. Generate the L-levels pyramid of Frame 2i.
+2. Generate the L-levels pyramid of Frames 2i+1 and 2i+2.
+3. Create a prediction for the Level l-2 of Frame 2i+1 using the Level l-1 of Frames 2i and 2i+2 as references, and replace the Level l-2 of Frame 2i+1 by the differences· Encode the Level l-2 of Frame 2i+1.
+4. l <- l-1. Go to 3, while l > 0. l <- L.
+5. Generate the pyramid of differences for Frame 2i. Encode it.
+6. i <- i+2 and go to 2, until reached the end of the GOF.
 
-4. Generete the pyramid of differences for Frames 0 and 2.
+## Synthesize-step procedure:
+
+0. l <- L.
+1. Decode the Level l-1 of Frame 2i.
+2. Decode the Level l-1 of Frame 2i+2.
+3. Create a prediction for the Level l-2 of Frame 2i+1 using the Level l-1 of Frames 2i and 2i+2 as references.
+4. Decode the (residue) level L-2 of Frame 2i+1. Add the prediction to it.
+5. l <- l-1. Go to 1, while l > 0. l <- L.
+6. i <- i+2 and go to 2, until reached the end of the GOF.
 
 
-Synthesize-step procedure:
 
 1. Generate Frame_0.Level_L and Frame_2.Level_L.
 2. Estimate the motion between the prvious cjhennels.
