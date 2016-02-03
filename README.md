@@ -8,8 +8,12 @@ Analyze-step procedure:
 	+---------+ +---------+ +---------+
 
 1. Generate the L-levels pyramid for the 3 frames.
-2. Estimate the movement for the L-1 Level of Frame 1 using Frame 0 and 2 as references.
-3. 
+2. Estimate the movement for the Level L-2 of Frame 1 using the Level L-1 of Frames 0 and 2 as references.
+3. L <- L-1. Go to 2, until L>0.
+4. Generate the pyramid of differences for Frame 0.
+5. Iterate over the rest of frames of the GOF.
+
+4. Generete the pyramid of differences for Frames 0 and 2.
 
 
 Synthesize-step procedure:
