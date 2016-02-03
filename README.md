@@ -6,7 +6,7 @@
 	| Frame 2i | | Frame 2i+1 | | Frame 2i+2 |
 	+----------+ +------------+ +------------+
 
-0. l <- L.
+0. l <- L. i <- 0.
 1. Generate the L-levels pyramid of Frame 2i.
 2. Generate the L-levels pyramid of Frames 2i+1 and 2i+2.
 3. Create a prediction for the Level l-2 of Frame 2i+1 using the Level l-1 of Frames 2i and 2i+2 as references, and replace the Level l-2 of Frame 2i+1 by the differences· Encode the Level l-2 of Frame 2i+1.
