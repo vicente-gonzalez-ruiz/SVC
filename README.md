@@ -16,20 +16,22 @@
 
 ## Synthesize-step procedure:
 
-   		   +-----+      +-----+	     +-----+
-		   |     |      |     |	     |     |
-		   +-----+      +-----+	     +-----+
-		      |                         |
-		 interpolate               interpolate
-		      +                         +
-	           residue                   residue
-		      |                         |
-		      v                         v
-		+-----------+ +----------+ +----------+ 
-		|           | |	         | |          |
- 		|           | |          | |          |
-		|           | |          | |          |
-		+-----------+ +----------+ +----------+
+   		   +-----+          +-----+	         +-----+
+		   |     |          |     |	         |     |
+		   +-----+          +-----+	         +-----+
+		      |                |                |
+		 interpolate           |           interpolate
+		      +           interpolate           +
+	       residue             |             residue
+		      |                |                |
+		      v                v                v
+		+-----------+    +-----------+    +-----------+ 
+		|           | MC |	         | MC |           |
+ 		|           |--->|           |<---|           |
+		|           |    |           |    |           |
+		+-----------+    +-----------+    +-----------+
+
+If the entropy of a residue block is smaller than the I-version of that block, the block is motion comensated. Otherwise, the block is I.
 
 
 0. l <- L.
