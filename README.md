@@ -2,9 +2,9 @@
 
 ## Analyze-step procedure:
 
-    +----------+ +------------+ +------------+
-	| Frame 2i | | Frame 2i+1 | | Frame 2i+2 |
-	+----------+ +------------+ +------------+
+		+----------+ +------------+ +------------+
+		| Frame 2i | | Frame 2i+1 | | Frame 2i+2 |
+		+----------+ +------------+ +------------+
 
 0. l <- L. i <- 0.
 1. Generate the L-levels pyramid of Frame 2i.
@@ -15,6 +15,22 @@
 6. i <- i+2 and go to 2, until reached the end of the GOF.
 
 ## Synthesize-step procedure:
+
+   		   +-----+      +-----+	     +-----+
+		   |     |      |     |	     |     |
+		   +-----+      +-----+	     +-----+
+		      |                         |
+		 interpolate               interpolate
+		      +                         +
+	           residue                   residue
+		      |                         |
+		      v                         v
+		+-----------+ +----------+ +----------+ 
+		|           | |	         | |          |
+ 		|           | |          | |          |
+		|           | |          | |          |
+		+-----------+ +----------+ +----------+
+
 
 0. l <- L.
 1. Decode the Level l-1 of Frame 2i.
