@@ -20,9 +20,16 @@
 		   |     |          |     |	         |     |
 		   +-----+          +-----+	         +-----+
 		      |                |                |
-		 interpolate           |           interpolate
-		      +           interpolate           +
-	       residue             |             residue
+		 interpolate      interpolate      interpolate
+		      |                |                |
+		      v                v                v
+		+-----------+    +-----------+    +-----------+ 
+		|           | ME |           | ME |           |
+ 		|           |<---|           |--->|           |
+		|           |    |           |    |           |
+		+-----------+    +-----------+    +-----------+
+		      |                |                |
+	     add residue     selective copy    add residue
 		      |                |                |
 		      v                v                v
 		+-----------+    +-----------+    +-----------+ 
@@ -30,8 +37,20 @@
  		|           |--->|           |<---|           |
 		|           |    |           |    |           |
 		+-----------+    +-----------+    +-----------+
+                               |
+	                      add residue
+						       |
+						       v
+	                     +-----------+
+						 |           |
+						 |           |
+						 |           |
+						 +-----------+
 
-If the entropy of a residue block is smaller than the I-version of that block, the block is motion comensated. Otherwise, the block is I.
+
+Selective copy: If the entropy of a MC-residue block is smaller than the
+I-version of that block, the block is motion comensated. Otherwise,
+the block is I.
 
 
 0. l <- L.
