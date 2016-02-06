@@ -44,15 +44,15 @@
     |           |--->|           |<---|           |
     |           |    |           |    |           |
     +-----------+    +-----------+    +-----------+
-                          |
-                     add residue
-                          |
-                          v
-                    +-----------+
-                    |           |
-                    |           |
-                    |           |
-                    +-----------+
+                           |
+                      add residue
+                           |
+                           v
+                     +-----------+
+                     |           |
+                     |           |
+                     |           |
+                     +-----------+
 
 
 Selective copy: If the entropy of a MC-residue block is smaller than the
