@@ -32,7 +32,7 @@
           v                v                v
     +-----------+    +-----------+    +-----------+ 
     |           | ME |           | ME |           |
-    |           |<---|     B     |--->|           |
+    |           |<---|     B     |--->|           | Step 1
     |           |    |           |    |           |
     +-----------+    +-----------+    +-----------+
           |                |                |
@@ -41,7 +41,7 @@
           v                v                v
     +-----------+    +-----------+    +-----------+
     |           | MC |	         | MC |           |
-    |     A     |--->|           |<---|     C     |
+    |     A     |--->|           |<---|     C     | Step 2
     |           |    |           |    |           |
     +-----------+    +-----------+    +-----------+
                            |
@@ -50,12 +50,12 @@
                            v
                      +-----------+
                      |           |
-                     |     X     |
+                     |     X     |                  Step 3
                      |           |
                      +-----------+
 
 
-A 4x4-block in X can have four different origins: (1) A, (2) B, (3) C or (4) (A+B)/2.
+A block in X can have four different origins: (1) A, (2) B, (3) C or (4) (A+B)/2. This decission need to be done at step 1.
 
 
 Selective copy: If the entropy of a MC-residue block is smaller than the
