@@ -21,46 +21,79 @@
 5. Generate the pyramid of differences for Frame 2i. Encode it.
 6. i <- i+2 and go to 2, until reached the end of the GOF.
 
-## Synthesize-step procedure:
+## Analyze-step:
 
-       +-----+          +-----+	         +-----+
-       | 2i  |          |2i+1 |	         |2i+2 |
-       +-----+          +-----+	         +-----+
-          |                |                |
-     interpolate      interpolate      interpolate
-          |                |                |
-          v                v                v
+
     +-----------+    +-----------+    +-----------+ 
-    |           | ME |           | ME |           |
-    |           |<---|     B     |--->|           | Step 1
+    |           |    |           |    |           |
+    |     A     |    |     B     |    |     C     |
     |           |    |           |    |           |
     +-----------+    +-----------+    +-----------+
           |                |                |
-     add residue     selective copy    add residue
+      subsample        subsample        subsample   Step 1
+          |                |                |
+          v                v                v
+       +-----+          +-----+	         +-----+
+       |     |          |     |	         |     |
+       +-----+          +-----+	         +-----+
+          |                |                |
+     interpolate      interpolate      interpolate  Step 2
+          |                |                |
+          v                v                v
+    +-----------+    +-----------+    +-----------+ 
+    |     ~     | ME |     ~     | ME |     ~     |
+    |     A     |<---|     B     |--->|     C     | Step 3
+    |           |    |           |    |           |
+    +-----------+    +-----------+    +-----------+
+          |                |                |
+     gen residue     selective copy    gen residue  Step 4
           |                |                |
           v                v                v
     +-----------+    +-----------+    +-----------+
     |           | MC |	         | MC |           |
-    |     A     |--->|           |<---|     C     | Step 2
+    |   A - A   |--->|           |<---|     C     | Step 5
     |           |    |           |    |           |
     +-----------+    +-----------+    +-----------+
-                           |
-                      add residue
-                           |
-                           v
+
+
+## Synthesize-step:
                      +-----------+
                      |           |
-                     |     X     |                  Step 3
+                     |     X     |
                      |           |
                      +-----------+
+                           ^
+                           |
+                      add residue                   Step 5
+                           |
+    +-----------+    +-----------+    +-----------+
+    |           | MC |	         | MC |           |
+    |     A     |--->|           |<---|     C     | Step 4
+    |           |    |           |    |           |
+    +-----------+    +-----------+    +-----------+
+          ^                ^                ^
+	  |                |                |
+     add residue     selective copy    add residue  Step 3
+	  |                |                |
+    +-----------+    +-----------+    +-----------+ 
+    |           | ME |           | ME |           |
+    |           |<---|     B     |--->|           | Step 2
+    |           |    |           |    |           |
+    +-----------+    +-----------+    +-----------+
+          ^                ^                ^
+          |                |                |
+     interpolate      interpolate      interpolate  Step 1
+          |                |                |
+       +-----+          +-----+	         +-----+
+       | 2i  |          |2i+1 |	         |2i+2 |
+       +-----+          +-----+	         +-----+
 
 
-A block in X can have four different origins: (1) A, (2) B, (3) C or (4) (A+B)/2. This decission need to be done at step 1.
-
-
-Selective copy: If the entropy of a MC-residue block is smaller than the
-I-version of that block, the block is motion comensated. Otherwise,
-the block is I.
+A pixel in X can have different origins: A (MC), B (selective copy), C
+(MC), (A+B)/2 (MC), etc. This decission need to be done at step 1 and
+should be taken into account the entropy of the residue pixels (result
+of the difference between the original pixels in B and the prediction)
+with respect to those pixels in B.
 
 
 0. l <- L.
