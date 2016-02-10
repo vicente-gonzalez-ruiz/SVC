@@ -46,15 +46,19 @@
     |           |    |           |    |           |
     +-----------+    +-----------+    +-----------+
           |                |                |
-     gen residue     selective copy    gen residue  Step 4
+      substract   selective substract   substract   Step 4
           |                |                |
           v                v                v
     +-----------+    +-----------+    +-----------+
-    |           | MC |	         | MC |           |
-    |   A - A   |--->|           |<---|     C     | Step 5
+    |      ~    | MC |           | MC |      ~    |
+    |    A-A    |--->|     X     |<---|    C-C    | Step 5
     |           |    |           |    |           |
     +-----------+    +-----------+    +-----------+
 
+
+X has I, P and B blocks (which can be of any size). An I-block is used
+when the entropy of the I-block (B-B') is smaller or equal than the
+entropy of the MC version of that block. A P-block if the entropy of the P
 
 ## Synthesize-step:
                      +-----------+
