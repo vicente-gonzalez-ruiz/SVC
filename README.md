@@ -1,6 +1,6 @@
 # SVC: A Symmetric Video Codec
 
-A SVC is based on the idea that both, the encoder and the decoder, have the same intelligence and therefore, only those pieces of information that can not be predicted by the encoder (and the decoder) are represented in the code-stream.
+A SVC is based on the idea that both, the encoder and the decoder, have the same intelligence and therefore, only those pieces of information that can not be predicted by the encoder (and the decoder) are represented in the code-stream, which can also include the prediction algorithm.
 
 ## Analyze-step procedure:
 
@@ -10,11 +10,18 @@ A SVC is based on the idea that both, the encoder and the decoder, have the same
 +----------+ +------------+ +------------+
 ~~~
 
-0. l <- L. i <- 0.
-1. Generate the L-levels pyramid of Frame 2i.
-2. Generate the L-levels pyramid of Frames 2i+1 and 2i+2.
-3. Create a prediction for the Level l-2 of Frame 2i+1 using the Level l-1 of Frames 2i and 2i+2 as references, and replace the Level l-2 of Frame 2i+1 by the differences· Encode the Level l-2 of Frame 2i+1.
-4. l <- l-1. Go to 3, while l > 0. l <- L.
+Input:
+S = number of spatial resolutions.
+
+Output:
+The code-stream.
+
+
+0. s <- S. i <- 0.
+1. Generate the S-levels pyramid of Frame 2i.
+2. Generate the S-levels pyramid of Frames 2i+1 and 2i+2.
+3. Create a prediction for the Level s-2 of Frame 2i+1 using the Level s-1 of Frames 2i and 2i+2 as references, and replace the Level l-2 of Frame 2i+1 by the differences· Encode the Level s-2 of Frame 2i+1.
+4. s <- s-1. Go to 3, while s > 0. s <- L.
 5. Generate the pyramid of differences for Frame 2i. Encode it.
 6. i <- i+2 and go to 2, until reached the end of the GOF.
 
