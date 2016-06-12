@@ -2,7 +2,7 @@
 
 A SVC is based on the idea that both, the encoder and the decoder, have the same intelligence and therefore, only those pieces of information that can not be predicted by the encoder (and the decoder) are represented in the code-stream, which can also include the prediction algorithm.
 
-## Analyze-step procedure:
+## Analyze-step:
 
 ~~~
 +----------+ +------------+ +------------+
@@ -18,10 +18,13 @@ The code-stream.
 
 
 0. s <- S. i <- 0.
-1. Generate the S-levels pyramid of Frame 2i.
-2. Generate the S-levels pyramid of Frames 2i+1 and 2i+2.
-3. Create a prediction for the Level s-2 of Frame 2i+1 using the Level s-1 of Frames 2i and 2i+2 as references, and replace the Level l-2 of Frame 2i+1 by the differences· Encode the Level s-2 of Frame 2i+1.
-4. s <- s-1. Go to 3, while s > 0. s <- L.
+1. Generate the S-levels pyramid of Frame 2i, ranging them from n-1 to 0.
+2. Generate the S-levels pyramid of Frames 2i+1 and 2i+2, ranging them from n-1 to 0.
+3. Create a prediction for Level s-2 of Frame 2i+1 using the Level s-1 of Frames 2i and 2i+2 as references, and replace the Level l-2 of Frame 2i+1 by the differences.
+4. Encode the Prediction Error s-2 (level s-2).
+5. s <- s-1.
+6. Go to 3, while s > 0.
+7. s <- L.
 5. Generate the pyramid of differences for Frame 2i. Encode it.
 6. i <- i+2 and go to 2, until reached the end of the GOF.
 
