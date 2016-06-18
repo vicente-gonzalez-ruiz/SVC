@@ -5,22 +5,23 @@ A SVC is based on the idea that both, the encoder and the decoder, have the same
 ## Analyze-step:
 
 ~~~
-+----------+ +------------+ +------------+
-| Frame 2i | | Frame 2i+1 | | Frame 2i+2 |
-+----------+ +------------+ +------------+
++---------+ +---------+ +---------+
+|  F[2i]  | | F[2i+1] | | F[2i+2] |
++---------+ +---------+ +---------+
 ~~~
 
 Input:
 S = number of spatial resolutions.
+F[] = the sequence of frames to encode.
 
 Output:
 The code-stream.
 
-
+Algorithm:
 0. s <- S. i <- 0.
-1. Generate the S-levels pyramid of Frame 2i, ranging them from n-1 to 0.
-2. Generate the S-levels pyramid of Frames 2i+1 and 2i+2, ranging them from n-1 to 0.
-3. Create a prediction for Level s-2 of Frame 2i+1 using the Level s-1 of Frames 2i and 2i+2 as references, and replace the Level l-2 of Frame 2i+1 by the differences.
+1. Generate the S-levels pyramid of frame F[2i], ranging them from n-1 (the smaller one) to 0 (the larger one).
+2. Generate the S-levels pyramid of frames F[2i+1] and F[2i+2], ranging them from n-1 to 0.
+3. Create a prediction for Level s-2 of F[2i+1] using the Level s-1 of F[2i] and F[2i+2] as references, and replace the Level l-2 of Frame 2i+1 by the differences.
 4. Encode the Prediction Error s-2 (level s-2).
 5. s <- s-1.
 6. Go to 3, while s > 0.
