@@ -4,6 +4,9 @@ A SVC is based on the idea that both, the encoder and the decoder, have the same
 
 ## Image pyramid:
 
+Input:
+S = number of spatial resolutions.
+
 ## Analyze-step:
 
 ~~~
