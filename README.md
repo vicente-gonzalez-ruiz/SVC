@@ -2,6 +2,8 @@
 
 A SVC is based on the idea that both, the encoder and the decoder, have the same intelligence and therefore, only those pieces of information that can not be predicted by the encoder (and the decoder) are represented in the code-stream, which can also include the prediction algorithm.
 
+## Image pyramid:
+
 ## Analyze-step:
 
 ~~~
