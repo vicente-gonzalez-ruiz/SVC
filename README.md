@@ -15,24 +15,25 @@ S = number of spatial resolutions.
 +---------+ +---------+ +---------+
 ~~~
 
-Input:
-L = number of spatial resolutions.
-F[] = the sequence of frames to encode.
+### Input:
+* L = number of spatial resolutions.
+* F[] = the sequence of frames to encode.
 
-Output:
-The code-stream.
+### Output:
+* The code-stream.
 
-Algorithm:
+### Algorithm:
 0. l <- L. i <- 0.
-1. Generate the L-levels pyramid of frame F[2i], ranging them from n-1 (the smaller one) to 0 (the larger one).
-2. Generate the L-levels pyramid of frames F[2i+1] and F[2i+2], ranging them from n-1 to 0.
-3. Create a prediction for Level l-2 of F[2i+1] using the Level l-1 of F[2i] and F[2i+2] as references, and replace the Level l-2 of Frame 2i+1 by the differences.
-4. Encode the Prediction Error l-2 (level l-2).
+1. Generate the L-levels pyramid of frame F[2i], ranging them from L-1 (the smaller one) to 0 (the larger one).
+2. Generate the L-levels pyramid of frames F[2i+1] and F[2i+2], ranging from L-1 to 0.
+3. Create a prediction for level l-1 of F[2i+1] using the level l-1 of F[2i] and F[2i+2], and level l of F[2i+1] as references, and replace the level l-1 of F[2i+1] by the differences.
+4. Encode the differences for level l-1 of F[2i+1].
 5. l <- l-1.
-6. Go to 3, while l > 0.
+6. While l > 0, Go to step 3.
 7. l <- L.
+8. i <- i+2.
 5. Generate the pyramid of differences for Frame 2i. Encode it.
-6. i <- i+2 and go to 2, until reached the end of the GOF.
+6. go to 2, until reached the end of the GOF.
 
 ## Analyze-step:
 
